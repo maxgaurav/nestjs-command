@@ -1,22 +1,17 @@
 # Nestjs Command
 
-[![npm version](https://img.shields.io/npm/v/nestjs-command)](https://www.npmjs.com/package/nestjs-command)
-[![npm download by month](https://img.shields.io/npm/dm/nestjs-command)](https://npmcharts.com/compare/nestjs-command?minimal=true)
-[![npm peer dependency version - @nestjs/core](https://img.shields.io/npm/dependency-version/nestjs-command/peer/@nestjs/core)](https://github.com/nestjs/nest)
-
 ## Description
+
+[Extended Package to allow installation in Nestjs 11](https://www.npmjs.com/package/nestjs-command)
 
 [Nest.js](https://github.com/nestjs/nest) Command tools, based on [yargs](https://github.com/yargs/yargs).
 
 ## Dependency
 
-- Use version `3.*` for nestjs `6.*`, `7.*`, `8.*`, `9.*`, `10.*`, yargs `16.*`, `17.*`
-- Use version `2.*` for nestjs `6.*`, `7.*`, `8.*`, yargs `11.*`, `12.*`, `13.*`, `14.*`, `15.*`
-- Use version `1.*` for nestjs `6.*`, `7.*`
-- Use version `0.*` for nestjs `5.*`
+- Use version `4.*` for nestjs `10.*`, `11.*`, yargs `16.*`, `17.*`
 
 ## BREAKING CHANGES (3.*)
-In version `3.*` has changes:
+In version `1.0.0` has changes:
 - Drop: `autoExit`
 - Drop: `CommandService.isRunning`
 - Drop: `CommandLogService`
