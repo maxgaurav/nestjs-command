@@ -1,0 +1,58 @@
+stages:
+  - prepare
+  - build
+  - deploy
+
+.only-run-prod: &only-run-prod
+  rules:
+    - if: $CI_COMMIT_REF_NAME =~ /^v\d+\.\d+\.\d+.*$/
+
+install_dependencies:
+  image: node:16-alpine
+  stage: prepare
+  script:
+    - yarn install
+  cache:
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - node_modules/
+
+build:
+  stage: build
+  image: node:16-alpine
+  before_script:
+    - yarn install
+  script:
+    - yarn build
+  artifacts:
+    paths:
+      - dist/
+  cache:
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - node_modules/
+      - dist/
+  <<: *only-run-prod
+
+publish_to_npm:
+  stage: deploy
+  image: node:16-alpine
+  before_script:
+    - npm config set registry https://registry.npmjs.org/
+    - npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+  script:
+    - npm publish --access public
+  cache:
+    key:
+      files:
+        - yarn.lock
+    policy: pull
+    paths:
+      - dist/
+  dependencies:
+    - build
+  <<: *only-run-prod
